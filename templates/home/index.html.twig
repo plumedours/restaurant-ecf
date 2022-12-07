@@ -1,48 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Installation Check{% endblock %}
+{% block title %}Quai Antique{% endblock %}
 
 {% block body %}
-    <div class="flex min-h-screen flex-col justify-center overflow-hidden bg-slate-900 py-6 sm:py-12">
-        <div class="bg-slate-800 px-6 pt-10 pb-8 shadow-xl mx-auto rounded-lg">
-            <div class="mx-auto max-w-md">
-                <div class="space-y-6 py-8 text-base leading-7 text-slate-200">
-                    <h1 class="font-bold text-xl text-center">Installation check</h1>
-                    <ul class="space-y-4">
-                        <li class="flex items-center">
-                            <svg class="h-6 w-6 flex-none fill-transparent stroke-green-500 stroke-2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="11"/>
-                                <path d="m8 13 2.165 2.165a1 1 0 0 0 1.521-.126L16 9" fill="none"/>
-                            </svg>
-                            <p class="ml-4">
-                                If you see this page correctly, everything has been successfully installed !
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <ul class="flex flex-col gap-4">
-                        <li class="font-semibold">
-                            <p class="text-slate-400">Want to dig deeper into Symfony?</p>
-                            <p>
-                                <a href="https://symfony.com/doc/current/index.html" target="_blank" class="text-sky-500 hover:text-sky-600">Read the docs &rarr;</a>
-                            </p>
-                        </li>
-                        <li class="font-semibold">
-                            <p class="text-slate-400">Want to dig deeper into Vite?</p>
-                            <p>
-                                <a href="https://vitejs.dev/guide" target="_blank" class="text-sky-500 hover:text-sky-600">Read the docs &rarr;</a>
-                            </p>
-                        </li>
-                        <li class="font-semibold">
-                            <p class="text-slate-400">Want to dig deeper into Tailwind?</p>
-                            <p>
-                                <a href="https://tailwindcss.com/docs" target="_blank" class="text-sky-500 hover:text-sky-600">Read the docs &rarr;</a>
-                            </p>
-                        </li>
-                    </ul>
-                </div>
+
+    <div class="flex flex-col bg-slate-300">
+        {# First bloc, button for menu #}
+        <div class="headerImage h-screen flex items-center justify-center">
+            <div class="flex flex-col justify-center">
+                <h1 class="text-xl md:text-2xl lg:text-3xl italic pb-6">Bienvenue chez Quai Antique !</h1>
+                <p class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase pb-8">Mangez, rêvez !</p>
+                <a href="{{path('app_gallery')}}">
+                    <button type="button" class="self-center focus:outline-none text-slate-50 bg-yellow-900 hover:bg-yellow-800 font-extrabold rounded-lg text-lg md:text-xl lg:text-2xl uppercase px-5 py-2.5 mr-2 mb-2 w-56 md:w-60 lg:w-64">Voir la galerie</button>
+                </a>
             </div>
         </div>
+        {# Second bloc, button to book table #}
+        <div class="bookImage h-screen flex items-center justify-center">
+            <div class="flex w-0 sm:w-7/12"></div>
+            <div class="flex flex-col justify-center">
+                <h1 class="text-xl md:text-2xl lg:text-3xl italic pb-6">Vous en avez envie,</h1>
+                <p class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase pb-8">Venez !</p>
+                <a href="{{path('app_book')}}">
+                    <button type="button" class="self-center focus:outline-none text-slate-50 bg-yellow-900 hover:bg-yellow-800 font-extrabold rounded-lg text-lg md:text-xl lg:text-2xl uppercase px-5 py-2.5 mr-2 mb-2 md:w-60 lg:w-64">Réserver une table</button>
+                </a>
+            </div>
+        </div>
+        {# Third bloc, button to see menu #}
+        <div class="menuImage h-screen flex items-center justify-center">
+            <div class="flex flex-col justify-center">
+                <h1 class="text-xl md:text-2xl lg:text-3xl italic pb-6">N'hésitez plus,</h1>
+                <p class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase pb-8">Choisissez !</p>
+                <a href="{{path('app_menu')}}">
+                    <button type="button" class="self-center focus:outline-none text-slate-50 bg-yellow-900 hover:bg-yellow-800 font-extrabold rounded-lg text-lg md:text-xl lg:text-2xl uppercase px-5 py-2.5 mr-2 mb-2 md:w-60 lg:w-64">Voir la carte</button>
+                </a>
+            </div>
+            <div class="flex w-0 sm:w-7/12"></div>
+        </div>
+        {# Fourth bloc, contact #}
+
     </div>
 {% endblock %}

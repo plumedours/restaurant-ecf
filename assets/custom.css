@@ -1,0 +1,22 @@
+.headerImage,
+.bookImage,
+.menuImage {
+    background-color: #000000;
+    background-position: center;
+    background-size: cover;
+    color: #ffffff;
+    padding: 1em;
+    text-align: center;
+}
+
+.headerImage {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('./images/header_img.jpg');
+}
+
+.bookImage {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('./images/book_table.jpg');
+}
+
+.menuImage {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('./images/menu_card.jpg');
+}
