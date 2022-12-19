@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Booking;
-use Doctrine\DBAL\Types\IntegerType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
