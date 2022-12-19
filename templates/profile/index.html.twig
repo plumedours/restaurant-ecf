@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+<div class="flex flex-col flex-grow w-screen items-center p-5">
+    <div class="flex flex-col w-4/5 md:w-3/5 lg:w-2/5 items-center shadow-lg shadow-gray-800 border bg-slate-100 py-5">
+        <div class="flex pb-5">
+            <h1 class="text-2xl font-bold text-yellow-800">Mes informations personnelles</h1>
+        </div>
+        <div class="flex w-full flex-col p-2">
+            <div class="flex flex-row items-end mb-2">
+                <p class="text-xl font-bold mr-2">Nom : </p>
+                <p class="text-lg">{{ app.user.lastname }}</p>
+            </div>
+            <div class="flex flex-row items-end mb-2">
+                <p class="text-xl font-bold mr-2">Prénom : </p>
+                <p class="text-lg">{{ app.user.firstname }}</p>
+            </div>
+            <div class="flex flex-row items-end mb-2">
+                <p class="text-xl font-bold mr-2">Email : </p>
+                <p class="text-lg">{{ app.user.email }}</p>
+            </div>
+            <div class="flex flex-row items-end mb-2">
+                <p class="text-xl font-bold mr-2">Téléphone : </p>
+                <p class="text-lg">{{ (app.user.phone) ? app.user.phone : 'Non renseigné' }}</p>
+            </div>
+            <div class="flex flex-row items-end mb-2">
+                <p class="text-xl font-bold mr-2">Mes allergies : </p>
+                <p class="text-lg">{{ (app.user.allergies) ? app.user.allergies : 'Non renseigné' }}</p>
+            </div>
+            <a href="{{ path('app_profile_edit', { 'id': app.user.id }) }}" class="focus:outline-none text-yellow-900 hover:text-yellow-800 font-bold text-xs uppercase mt-2">Modifier mes informations</a>
+        </div>
+
+        <div class="flex pb-5">
+            <h2 class="text-2xl font-bold text-yellow-800 pt-5">Mes réservations</h2>
+        </div>
+
+        {% for book in userBooks %}
+            
+        <div class="flex w-11/12 bg-slate-50 flex-col p-2 border rounded m-1">
+            <div class="flex flex-row items-end mb-2">
+                <p class="text-xl font-bold mr-2">Date : </p>
+                <p class="text-lg">{{ book.date }}</p>
+            </div>
+            <div class="flex flex-row items-end mb-2">
+                <p class="text-xl font-bold mr-2">Heure : </p>
+                <p class="text-lg">{{ book.hour }}</p>
+            </div>
+            <div class="flex flex-row items-end mb-2">
+                <p class="text-xl font-bold mr-2">Nombre de personnes : </p>
+                <p class="text-lg">{{ book.nbrOfPerson }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,20 +1,126 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MenuController!{% endblock %}
+{% block title %}Quai Antique - Menus{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/maxime/Formation/ECF/symfony-vite-tailwind/src/Controller/MenuController.php'|file_link(0) }}">src/Controller/MenuController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/maxime/Formation/ECF/symfony-vite-tailwind/templates/menu/index.html.twig'|file_link(0) }}">templates/menu/index.html.twig</a></code></li>
-    </ul>
+<div class="flex-grow">
+    <div class="flex justify-center py-5">
+        <h1 class="flex text-3xl font-bold">La carte</h1>
+    </div>
+    <div class="flex justify-center pb-5">
+        <div class="w-11/12 bg-white border rounded-lg shadow-md">
+            <div x-data="{ tab: 'starters' }">
+                <nav class="font-medium text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 flex justify-center">
+                    <a
+                    class="p-2 hover:font-semibold hover:text-yellow-800 hover:bg-gray-100"
+                    :class="{ 'text-yellow-800 font-semibold': tab === 'starters' }"
+                    x-on:click.prevent="tab = 'starters'"
+                    href="#"
+                    >Entrées</a>
+                    <a
+                    class="p-2 hover:font-semibold hover:text-yellow-800 hover:bg-gray-100"
+                    :class="{ 'text-yellow-800 font-semibold': tab === 'main-courses' }"
+                    x-on:click.prevent="tab = 'main-courses'"
+                    href="#"
+                    >Plats</a>
+                    <a
+                    class="p-2 hover:font-semibold hover:text-yellow-800 hover:bg-gray-100"
+                    :class="{ 'text-yellow-800 font-semibold': tab === 'desserts' }"
+                    x-on:click.prevent="tab = 'desserts'"
+                    href="#"
+                    >Desserts</a>
+                    <a
+                    class="p-2 hover:font-semibold hover:text-yellow-800 hover:bg-gray-100"
+                    :class="{ 'text-yellow-800 font-semibold': tab === 'drink' }"
+                    x-on:click.prevent="tab = 'drink'"
+                    href="#"
+                    >Boissons</a>
+                    <a
+                    class="p-2 hover:font-semibold hover:text-yellow-800 hover:bg-gray-100"
+                    :class="{ 'text-yellow-800 font-semibold': tab === 'formules' }"
+                    x-on:click.prevent="tab = 'formules'"
+                    href="#"
+                    >Formules</a>
+                </nav>
+                <div class="bg-white p-4 rounded-b-xl">
+                    <div x-show="tab === 'starters'">
+                    {% for starter in starters %}
+                        <div class="flex flex-col">
+                            <div class="flex flex-row border-b-2 mb-4">
+                                <div class="flex flex-col w-10/12">
+                                    <p class="text-lg font-semibold">{{ starter.title }}</p>
+                                    <p class="text-sm italic text-gray-600">{{ starter.description }}</p>
+                                </div>
+                                <div class="flex w-2/12 justify-center items-end">
+                                    <p class="text-base font-semibold">{{ starter.price }}€</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div x-show="tab === 'main-courses'">
+                    {% for maincourse in maincourses %}
+                        <div class="flex flex-col">
+                            <div class="flex flex-row border-b-2 mb-4">
+                                <div class="flex flex-col w-10/12">
+                                    <p class="text-lg font-semibold">{{ maincourse.title }}</p>
+                                    <p class="text-sm italic text-gray-600">{{ maincourse.description }}</p>
+                                </div>
+                                <div class="flex w-2/12 justify-center items-end">
+                                    <p class="text-base font-semibold">{{ maincourse.price }}€</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div x-show="tab === 'desserts'">
+                    {% for dessert in desserts %}
+                        <div class="flex flex-col">
+                            <div class="flex flex-row border-b-2 mb-4">
+                                <div class="flex flex-col w-10/12">
+                                    <p class="text-lg font-semibold">{{ dessert.title }}</p>
+                                    <p class="text-sm italic text-gray-600">{{ dessert.description }}</p>
+                                </div>
+                                <div class="flex w-2/12 justify-center items-end">
+                                    <p class="text-base font-semibold">{{ dessert.price }}€</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div x-show="tab === 'drink'">
+                    {% for drink in drinks %}
+                        <div class="flex flex-col">
+                            <div class="flex flex-row border-b-2 mb-4">
+                                <div class="flex flex-col w-10/12">
+                                    <p class="text-lg font-semibold">{{ drink.title }}</p>
+                                    <p class="text-sm italic text-gray-600">{{ drink.description }}</p>
+                                </div>
+                                <div class="flex w-2/12 justify-center items-end">
+                                    <p class="text-base font-semibold">{{ drink.price }}€</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <div x-show="tab === 'formules'">
+                    {% for formule in formules %}
+                        <div class="flex flex-col">
+                            <div class="flex flex-row border-b-2 mb-4">
+                                <div class="flex flex-col w-10/12">
+                                    <p class="text-lg font-semibold">{{ formule.title }}</p>
+                                    <p class="text-sm italic text-gray-600">{{ formule.description }}</p>
+                                </div>
+                                <div class="flex w-2/12 justify-center items-end">
+                                    <p class="text-base font-semibold">{{ formule.price }}€</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

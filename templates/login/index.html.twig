@@ -3,18 +3,33 @@
 {% block title %}Hello LoginController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="flex flex-col flex-grow w-screen items-center p-5">
+    <div class="flex flex-col w-4/5 md:w-3/5 lg:w-2/5 items-center shadow-lg shadow-gray-800 border bg-slate-100 py-5">
+    
+        <div class="flex">
+            <h1 class="text-2xl font-bold text-yellow-800">Connexion</h1>
+        </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        {% if error %}
+            <div class="bg-red-500 font-bold text-white px-3 py-1 rounded">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/maxime/Formation/ECF/symfony-vite-tailwind/src/Controller/LoginController.php'|file_link(0) }}">src/Controller/LoginController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/maxime/Formation/ECF/symfony-vite-tailwind/templates/login/index.html.twig'|file_link(0) }}">templates/login/index.html.twig</a></code></li>
-    </ul>
+        <form class="flex flex-col w-full gap-4 p-3" action="{{ path('app_login') }}" method="post">
+            <label class="font-semibold" for="username">Email :</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}">
+
+            <label class="font-semibold" for="password">Mot de passe :</label>
+            <input type="password" id="password" name="_password">
+
+            {# If you want to control the URL the user is redirected to on success
+            <input type="hidden" name="_target_path" value="/account"> #}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <div class="flex flex-row">
+                <button class="focus:outline-none text-slate-50 bg-yellow-900 hover:bg-yellow-800 font-bold text-lg uppercase mt-5 w-32" type="submit">Connexion</button>
+                <div class="flex items-end ml-5"><a class="text-xs italic text-gray-800 hover:text-yellow-700" href="{{ path('app_register') }}">Pas encore de compte ?</a></div>
+                <div class="flex items-end ml-5"><a class="text-xs italic text-gray-800 hover:text-yellow-700" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a></div>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

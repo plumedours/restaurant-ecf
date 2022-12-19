@@ -1,6 +1,7 @@
 .headerImage,
 .bookImage,
-.menuImage {
+.menuImage,
+.contactImage {
     background-color: #000000;
     background-position: center;
     background-size: cover;
@@ -19,4 +20,20 @@
 
 .menuImage {
     background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('./images/menu_card.jpg');
+}
+
+.contactImage {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('./images/contact_bg.jpg');
+}
+
+textarea {
+    border: 1px solid #6B7280;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
 }

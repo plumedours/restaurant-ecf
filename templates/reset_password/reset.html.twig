@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réinitialiser votre mot de passe{% endblock %}
+
+{% block body %}
+<div class="flex flex-col flex-grow w-screen items-center p-5">
+    <div class="flex flex-col w-4/5 md:w-3/5 lg:w-2/5 items-center shadow-lg shadow-gray-800 border bg-slate-100 py-5">
+
+        <div class="flex">
+            <h1 class="text-2xl font-bold text-yellow-800">Réinitialiser votre mot de passe</h1>
+        </div>
+
+        {{ form_start(resetForm, {'attr': {'class': 'flex flex-col w-full gap-4 p-3'}}) }}
+            <div class="flex flex-col">
+                    {{ form_label(resetForm.plainPassword, ' ') }}
+                    {{ form_widget(resetForm.plainPassword) }}
+                    {{ form_errors(resetForm.plainPassword) }}
+            </div>
+            <div class="flex flex-row">
+            
+                <button type="submit" class="focus:outline-none text-slate-50 bg-yellow-900 hover:bg-yellow-800 font-bold text-lg uppercase mt-5 w-40">Réinitialiser</button>
+            </div>
+        {{ form_end(resetForm) }}
+    </div>
+</div>
+{% endblock %}

@@ -27,5 +27,6 @@
 /.DS_Store
 .DS_Store
 
-/assets/images/gallery/*
 /assets/images/*
+/public/uploads/*
+/migrations/*

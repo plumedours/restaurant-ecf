@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="flex flex-col flex-grow w-screen items-center p-5">
+    <div class="flex flex-col w-4/5 md:w-3/5 lg:w-2/5 items-center shadow-lg shadow-gray-800 border bg-slate-100 py-5">
+    {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        {% endfor %}
+
+        <div class="flex">
+            <h1 class="text-2xl font-bold text-yellow-800">Inscription</h1>
+        </div>
+
+        {{ form_start(registrationForm, {'attr': {'class': 'flex flex-col w-full gap-4 p-3'}}) }}
+            <div class="flex flex-col">
+                {{ form_label(registrationForm.firstname) }}
+                {{ form_widget(registrationForm.firstname) }}
+                {{ form_errors(registrationForm.firstname) }}
+            </div>
+            <div class="flex flex-col">
+                {{ form_label(registrationForm.lastname) }}
+                {{ form_widget(registrationForm.lastname) }}
+                {{ form_errors(registrationForm.lastname) }}
+            </div>
+            <div class="flex flex-col">
+                {{ form_label(registrationForm.email) }}
+                {{ form_widget(registrationForm.email) }}
+                {{ form_errors(registrationForm.email) }}
+            </div>
+            <div class="flex flex-col">
+                {{ form_label(registrationForm.phone) }}
+                {{ form_widget(registrationForm.phone) }}
+                {{ form_errors(registrationForm.phone) }}
+            </div>
+            <div class="flex flex-col">
+                {{ form_label(registrationForm.plainPassword) }}
+                {{ form_widget(registrationForm.plainPassword) }}
+                {{ form_errors(registrationForm.plainPassword) }}
+            </div>
+            <div class="flex flex-col">
+                <div class="flex flex-row justify-between">
+                    {{ form_label(registrationForm.agreeTerms) }}
+                </div>
+                <div class="w-4">
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                </div>
+                {{ form_errors(registrationForm.agreeTerms) }}
+                <div class="flex flex-row">
+                    <button type="submit" class="focus:outline-none text-slate-50 bg-yellow-900 hover:bg-yellow-800 font-bold text-lg uppercase mt-5 w-32">S'inscrire</button>
+                    <div class="flex items-end ml-5"><a class="text-xs italic text-gray-800 hover:text-yellow-700" href="{{ path('app_login') }}">Déjà un compte ?</a></div>
+                </div>
+            </div>
+        {{ form_end(registrationForm) }}
+    </div>
+</div>
+{% endblock %}
