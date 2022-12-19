@@ -1,20 +1,78 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BookController!{% endblock %}
+{% block title %}Réserver une table{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="flex flex-col flex-grow w-screen items-center p-5">
+    <div class="flex flex-col w-4/5 md:w-3/5 lg:w-3/5 items-center shadow-lg shadow-gray-800 border bg-slate-100 py-5">
+        <div class="flex pb-5">
+            <h1 class="text-2xl font-bold text-yellow-800">Réserver une table</h1>
+        </div>
+        {% for message in app.flashes('success') %}
+			<div class="bg-green-500 font-bold text-white px-3 py-1 rounded">
+				{{ message }}
+			</div>
+		{% endfor %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+		{% for message in app.flashes('warning') %}
+			<div class="bg-red-500 font-bold text-white px-3 py-1 rounded">
+				{{ message }}
+			</div>
+		{% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/maxime/Formation/ECF/symfony-vite-tailwind/src/Controller/BookController.php'|file_link(0) }}">src/Controller/BookController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/maxime/Formation/ECF/symfony-vite-tailwind/templates/book/index.html.twig'|file_link(0) }}">templates/book/index.html.twig</a></code></li>
-    </ul>
+        {{ form_start(bookingForm, {'attr': {'class': 'flex flex-col w-full gap-4 p-3'}}) }}
+        <div class="flex flex-col lg:flex-row justify-evenly">
+            <div class="flex flex-col gap-5">
+                <div class="flex flex-col">
+                    {{ form_label(bookingForm.date, 'Date' )}}
+                    {{ form_widget(bookingForm.date) }}
+                    {{ form_errors(bookingForm.date) }}
+                </div>
+                <div class="flex flex-col">
+                    {{ form_label(bookingForm.firstname, 'Nom' )}}
+                    {{ form_widget(bookingForm.firstname) }}
+                    {{ form_errors(bookingForm.firstname) }}
+                </div>
+                <div class="flex flex-col">
+                    {{ form_label(bookingForm.lastname, 'Prénom' )}}
+                    {{ form_widget(bookingForm.lastname) }}
+                    {{ form_errors(bookingForm.lastname) }}
+                </div>
+                <div class="flex flex-col">
+                    {{ form_label(bookingForm.email, 'Email' )}}
+                    {{ form_widget(bookingForm.email) }}
+                    {{ form_errors(bookingForm.email) }}
+                </div>
+            </div>
+            <div class="flex flex-col pt-5 lg:pt-0 gap-5">
+                <div class="flex flex-row justify-evenly gap-3">
+                    <div class="flex flex-col w-full lg:w-auto">
+                        {{ form_label(bookingForm.hour, 'Heure' )}}
+                        {{ form_widget(bookingForm.hour) }}
+                        {{ form_errors(bookingForm.hour) }}
+                    </div>
+                    <div class="flex flex-col w-full lg:w-auto">
+                        {{ form_label(bookingForm.nbrOfPerson, 'Nombre de personnes' )}}
+                        {{ form_widget(bookingForm.nbrOfPerson) }}
+                        {{ form_errors(bookingForm.nbrOfPerson) }}
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    {{ form_label(bookingForm.phone, 'Téléphone' )}}
+                    {{ form_widget(bookingForm.phone) }}
+                    {{ form_errors(bookingForm.phone) }}
+                </div>
+                <div class="flex flex-col">
+                    {{ form_label(bookingForm.allergies, 'Allergies' )}}
+                    {{ form_widget(bookingForm.allergies) }}
+                    {{ form_errors(bookingForm.allergies) }}
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <button class="focus:outline-none text-slate-50 bg-yellow-900 hover:bg-yellow-800 font-bold text-lg uppercase mt-5 w-32">Envoyer</button>
+        </div>
+    </div>
+    {{ form_end(bookingForm) }}
 </div>
 {% endblock %}

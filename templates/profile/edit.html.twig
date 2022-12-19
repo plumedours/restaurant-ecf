@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mes informations{% endblock %}
+
+{% block body %}
+    <div class="flex flex-col flex-grow w-screen items-center p-5">
+    <div class="flex flex-col w-4/5 md:w-3/5 lg:w-2/5 items-center shadow-lg shadow-gray-800 border bg-slate-100 py-5">
+        <div class="flex pb-5">
+            <h1 class="text-2xl font-bold text-yellow-800">Modifier mes informations</h1>
+        </div>
+        {% for message in app.flashes('success') %}
+			<div class="bg-green-500 font-bold text-white px-3 py-1 rounded">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		{% for message in app.flashes('warning') %}
+			<div class="bg-red-500 font-bold text-white px-3 py-1 rounded">
+				{{ message }}
+			</div>
+		{% endfor %}
+    {{ form_start(formEditProfile, {'attr': {'class': 'flex flex-col w-full gap-4 p-3'}}) }}
+        <div class="flex flex-col">
+            {{ form_label(formEditProfile.lastname, 'Nom' )}}
+            {{ form_widget(formEditProfile.lastname)}}
+            {{ form_errors(formEditProfile.lastname)}}
+        </div>
+        <div class="flex flex-col">
+            {{ form_label(formEditProfile.firstname, 'Prénom' )}}
+            {{ form_widget(formEditProfile.firstname)}}
+            {{ form_errors(formEditProfile.firstname)}}
+        </div>
+        <div class="flex flex-col">
+            {{ form_label(formEditProfile.phone, 'Téléphone' )}}
+            {{ form_widget(formEditProfile.phone)}}
+            {{ form_errors(formEditProfile.phone)}}
+        </div>
+        <div class="flex flex-col">
+            {{ form_label(formEditProfile.allergies, 'Mes allergies' )}}
+            {{ form_widget(formEditProfile.allergies)}}
+            {{ form_errors(formEditProfile.allergies)}}
+        </div>
+
+    {{ form_end(formEditProfile) }}
+    </div>
+</div>
+{% endblock %}

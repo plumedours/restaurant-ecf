@@ -5,12 +5,20 @@
     <div class="flex flex-row text-white text-xs">
         <div class="flex flex-col mr-1 px-1 md:px-2 text-center border-2 border-gray-800">
             <p class="underline pb-2 text-green-500">Ouverture</p>
-            <p class="italic">Mardi au Samedi :</p>
-            <p class="italic">11h30-14h30 / 19h - 22h30</p>
+            {% for day in days %}
+                {% if day.open %}
+                    <p> {{ day.day }} </p>
+                {% endif %}
+            {% endfor %}
+            <p class="italic mt-1">11h30-14h30 / 19h - 22h30</p>
         </div>
         <div class="flex flex-col ml-1 px-1 md:px-2 text-center border-2 border-gray-800">
             <p class="underline pb-2 text-red-500">Fermeture</p>
-            <p class="italic">Dimanche et Lundi</p>
+            {% for day in days %}
+                {% if day.open != true %}
+                    <p> {{ day.day }} </p>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </footer>
