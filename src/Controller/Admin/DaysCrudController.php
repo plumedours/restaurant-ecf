@@ -18,7 +18,7 @@ class DaysCrudController extends AbstractCrudController
     {
         return [
             Field::new('day', 'Jours'),
-            Field::new('open', 'Jours')
+            Field::new('open', 'Ouvert')
                 ->setFormType(BooleanType::class)
                 ->onlyOnIndex()
                 ->setFormTypeOption('disabled', 'disabled'),
