@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Booking;
 use App\Form\BookingType;
+use App\Repository\BookingRepository;
 use App\Repository\DaysRepository;
 use App\Repository\TimeslotsRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -17,8 +18,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class BookController extends AbstractController
 {
     #[Route('/book', name: 'app_book')]
-    public function index(TimeslotsRepository $hourRepo, DaysRepository $daysRepo, Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
+    public function index(TimeslotsRepository $hourRepo, DaysRepository $daysRepo, BookingRepository $bookingRepo, Request $request, EntityManagerInterface $em, MailerInterface $mailer): Response
     {
+        $totalPerson = 0;
         $hours = $hourRepo->findAll('hour');
         $days = $daysRepo->findAll();
         $booking = new Booking();
@@ -32,30 +34,49 @@ class BookController extends AbstractController
         $bookingForm = $this->createForm(BookingType::class, $booking);
         $bookingForm->handleRequest($request);
 
+        // $books = $bookingRepo->findBy(array('date' => $bookingForm->getData('date')));
+        // // dd($books);
+        // dump($books);
+
         if ($bookingForm->isSubmitted() && $bookingForm->isValid()) {
             $booking = $bookingForm->getData();
             $booking->setHour($bookingForm->get('hour')->getNormData()->getStart());
             $booking->setDate($bookingForm->get('date')->getData('date')->format('d M Y'));
-            $em->persist($booking);
-            $em->flush();
 
-            //Envoie du mail
-            $email = (new TemplatedEmail())
-                ->from('quaiantique@plumedours.fr')
-                ->to($booking->getEmail())
-                ->subject('Votre réservation chez Quai Antique')
-                // path of the Twig template to render
-                ->htmlTemplate('emails/booking.html.twig')
+            // Get nbrOfPerson for reservation date
+            $books = $bookingRepo->findBy(array('date' => $bookingForm->get('date')->getData('date')->format('d M Y')));
 
-                // pass variables (name => value) to the template
-                ->context([
-                    'booking' => $booking,
-                ]);
+            foreach ($books as $b) {
+                $totalPerson += $b->getNbrOfPerson();
+            }
 
-            $mailer->send($email);
+            // dump($totalPerson + $bookingForm->get('nbrOfPerson')->getData());
+            // exit();
 
-            $this->addFlash('success', 'Votre réservation a bien été prise en compte. Vous allez recevoir un email de confirmation.');
+            if (($totalPerson + $bookingForm->get('nbrOfPerson')->getData()) <= 40) {
 
+                $em->persist($booking);
+                $em->flush();
+
+                // Envoie du mail
+                $email = (new TemplatedEmail())
+                    ->from('quaiantique@plumedours.fr')
+                    ->to($booking->getEmail())
+                    ->subject('Votre réservation chez Quai Antique')
+                    // path of the Twig template to render
+                    ->htmlTemplate('emails/booking.html.twig')
+
+                    // pass variables (name => value) to the template
+                    ->context([
+                        'booking' => $booking,
+                    ]);
+
+                $mailer->send($email);
+
+                $this->addFlash('success', 'Votre réservation a bien été prise en compte. Vous allez recevoir un email de confirmation.');
+            } else {
+                $this->addFlash('warning', 'Plus de place disponible pour cette date, contactez le restaurant pour plus d\'informations');
+            }
             return $this->redirectToRoute('app_book');
         }
 

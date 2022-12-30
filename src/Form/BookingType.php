@@ -21,6 +21,10 @@ class BookingType extends AbstractType
         $builder
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
+                // 'attr' => [
+                //     'min' => (new \DateTime())->format('Y-m-d'),
+                //     'max' => (new \DateTime('+1 month'))->format('Y-m-d'),
+                // ],
                 'mapped' => false,
             ])
             // ->add('hour', ChoiceType::class)

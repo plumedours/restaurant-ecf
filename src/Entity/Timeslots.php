@@ -20,8 +20,8 @@ class Timeslots
     #[ORM\Column(length: 10)]
     private ?string $start = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $end = null;
+    // #[ORM\Column(type: Types::TIME_MUTABLE)]
+    // private ?\DateTimeInterface $end = null;
 
     public function getId(): ?int
     {
@@ -52,15 +52,15 @@ class Timeslots
         return $this;
     }
 
-    public function getEnd(): ?\DateTimeInterface
-    {
-        return $this->end;
-    }
+    // public function getEnd(): ?\DateTimeInterface
+    // {
+    //     return $this->end;
+    // }
 
-    public function setEnd(\DateTimeInterface $end): self
-    {
-        $this->end = $end;
+    // public function setEnd(\DateTimeInterface $end): self
+    // {
+    //     $this->end = $end;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }
