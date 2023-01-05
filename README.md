@@ -87,6 +87,7 @@ Afin de pouvoir installer le site sur sa machine, en local, veuillez suivre les 
 
 - À la racine du projet, créer un fichier nommé ***.env.local*** et copier / coller tout ce qui se trouve dans le fichier ***.env***. Le fichier *.env.local* sera lu en priorité. *(dupliquer le fichier .env et le renommer en .env.local)*
     - Modifier les informations concernant votre base de données (nom d’utilisateur, mot de passe, etc…). *(de mon côté, j’utilise MySQL, donc je commente la ligne postgresql et je décommente la ligne mysql)*
+    - Ne pas oublier de modifier les informations dans Mailer avec vos infos SMTP *(en local, j’ai utilisé MailTrap qui fonctionne très bien pour le développement)*
 
 - Si tout s’est bien passé, taper l’adresse suivant de le navigateur :
     
